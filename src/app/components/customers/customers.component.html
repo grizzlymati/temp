@@ -1,0 +1,88 @@
+<div class="component">
+    <div class="row">
+        <div [ngClass]="trainingSelected ?'col-2':'col-6'">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Mateo Lis
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>waga: 120kg</p>
+                    <p>wzrost: 2m</p>
+                    <p>wiek: 27lat</p>
+                    <button mat-raised-button color="primary" (click)="showCustomerTrainings('Adam')">Show trainings</button>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Adam Samsonowicz
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>waga: 120kg</p>
+                    <p>wzrost: 2m</p>
+                    <p>wiek: 27lat</p>
+                    <button mat-raised-button color="primary" (click)="showCustomerTrainings('Adam')">Show trainings</button>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div *ngIf="selectedCustomer" [ngClass]="trainingSelected ?'col-3':'col-6'">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Training one
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                        <div class="col-10">
+                            kuhwa
+                        </div>
+                        <div style="cursor:pointer" class="col-2" (click)="openTraining()">
+                            >
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Training two
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                        <div class="col-10">
+                            polacy robacy kuhwa
+                        </div>
+                        <div style="cursor:pointer" class="col-2" (click)="openTraining()">
+                            >
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <button mat-raised-button color="primary" (click)="addNewTraining()">Add</button>
+        </div>
+        <div *ngIf="trainingSelected" class="col-7">
+            <button mat-raised-button color="primary">Add</button>
+            <mat-tab-group mat-align-tabs="start">
+                <mat-tab label="Exercise 1">Exercise 1</mat-tab>
+                <mat-tab label="Exercise 2">Exercise 2</mat-tab>
+                <mat-tab label="walenie konia">walenie konia</mat-tab>
+                <mat-tab label="Exercise 4">Exercise 4</mat-tab>
+                <mat-tab label="Exercise 5">Exercise 5</mat-tab>
+                <mat-tab label="Exercise 6">Exercise 6</mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

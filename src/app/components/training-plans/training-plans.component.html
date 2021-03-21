@@ -1,0 +1,77 @@
+<div class="component">
+    <div class="row">
+        <div class="col-6">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Training one
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>Ewelina ty kuhwo jebana</p>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Training two
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                        <div class="col-11">
+                            polacy robacy kuhwa
+                        </div>
+                        <div (click)="openTraining()" class="col-1">
+                            >
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngFor="let training of trainings">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{training.name}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{training.description}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                        <div class="col-11">
+                            polacy robacy kuhwa
+                        </div>
+                        <div (click)="openCustomTraining(training.excercises)" class="col-1">
+                            >
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <button mat-raised-button color="primary" (click)="addTrainingTemplate()">Add</button>
+        </div>
+        <div *ngIf="isTrainingOpen" class="col-6">
+            <button mat-raised-button color="primary" (click)="addTab()">Add</button>
+            <mat-tab-group mat-align-tabs="start">
+                <div *ngIf="exercises && exercises.length < 1">
+                    <mat-tab label="Exercise 1">Exercise 1</mat-tab>
+                    <mat-tab label="Exercise 2">Exercise 2</mat-tab>
+                    <mat-tab label="walenie konia">walenie konia</mat-tab>
+                    <mat-tab label="Exercise 4">Exercise 4</mat-tab>
+                    <mat-tab label="Exercise 5">Exercise 5</mat-tab>
+                    <mat-tab label="Exercise 6">Exercise 6</mat-tab>
+                </div>
+                <div *ngIf="exercises && exercises.length > 0">
+                    <mat-tab *ngFor="let exercise of exercises, let i = index" label="excercise {{i + 1}} {{exercise.length > 1 ? 'superseria' : ''}}">
+                        <div *ngFor="let item of exercise">
+                            {{item.description}}
+                            <img style="height: 300px; width: 300px;" src="{{item.img}}" alt="Girl in a jacket">
+                        </div>
+                    </mat-tab>
+                </div>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

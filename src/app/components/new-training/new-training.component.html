@@ -1,0 +1,71 @@
+<form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <label>
+                    Name:
+                    <input type="text" formControlName="name">
+                </label>
+            </td>
+            <td>
+                <label>
+                    Description:
+                    <input type="text" formControlName="description">
+                </label>
+            </td>
+            <td>
+                <span style="cursor:pointer;border: 1px solid rgba(0,0,0,.2); padding: 0.5rem 0.5rem;" (click)="changeSuperSeriaMode()"
+                mat-raised-button color="primary">Superseria</span>
+            </td>
+        </tr>
+    </table>
+    <div *ngIf="addExerciseMode">
+        <mat-list #exercises >
+            <mat-list-item *ngFor="let excercise of exercisesList">
+                <div (click)="selectOneExercise(excercise)" class="row">
+                    <div *ngIf="superSeriaMode" class="col-2">
+                                            <input
+                    type="checkbox"
+                    [checked]="excercise.selected"
+                    (change)="excercise.selected = !excercise.selected"/>
+                    </div>
+                    <div class="col-6">
+                        <img style="height: 50px; width: 50px;" src="{{excercise.img}}">
+                    </div>
+                    <div class="col-4">
+                        {{excercise.description}}
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <div style="text-align: right">
+            <span style="cursor:pointer;border: 1px solid rgba(0,0,0,.2); padding: 0.5rem 0.5rem;"
+                (click)="confirmExercise()" mat-raised-button
+                color="primary">Confirm</span>
+        </div>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let exercise of exercises, let i = index">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{exercise.description}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    excercise: {{i + 1}} 
+                    <label *ngIf="exercise.length > 1">(Superseria)</label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let item of exercise">
+                <p>Name: {{item.description}}</p>
+                <img style="height: 50px; width: 50px;" src="{{item.img}}" alt="Girl in a jacket">
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div *ngIf="!addExerciseMode">
+        <span style="cursor:pointer;border: 1px solid rgba(0,0,0,.2); padding: 0.5rem 0.5rem;" (click)="addExercise()"
+            mat-raised-button color="primary">Add excercize</span>
+    </div>
+    <div style="text-align: right">
+        <button mat-raised-button color="primary" type="submit" name="submit" value="Submit">Submit</button>
+    </div>
+</form>
