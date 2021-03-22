@@ -66,8 +66,17 @@
                 <div *ngIf="exercises && exercises.length > 0">
                     <mat-tab *ngFor="let exercise of exercises, let i = index" label="excercise {{i + 1}} {{exercise.length > 1 ? 'superseria' : ''}}">
                         <div *ngFor="let item of exercise">
-                            {{item.description}}
-                            <img style="height: 300px; width: 300px;" src="{{item.img}}" alt="Girl in a jacket">
+                            <div class="row">
+                                <div class="col-8">
+                                    {{item.description}}
+                                    <img style="height: 300px; width: 300px;" src="{{item.img}}" alt="Girl in a jacket">
+                                </div>
+                                <div class="col-4">
+                                    <div *ngFor="let seria of item.series">
+                                        seria {{seria.number}}. repeats: {{seria.repeats}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </mat-tab>
                 </div>

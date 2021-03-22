@@ -15,7 +15,6 @@ export class NewTrainingComponent implements OnInit {
   { 'selected': false, 'description': 'walenie konia', 'img': 'https://img.memecdn.com/pepe-fap_o_4699077.jpg' },
   { 'selected': false, 'description': 'pompki', 'img': 'https://cdn.galleries.smcloud.net/t/galleries/gf-heEP-UaBi-tqPg_efekty-robienia-pompek-wizualne-i-zdrowotne-zalety-cwiczenia-1920x1080-nocrop.jpg' }];
   public addExerciseMode = false;
-  public superSeriaMode = true;
   public tempExcercises: any[] = [];
   public profileForm = new FormGroup({
     name: new FormControl(''),
@@ -31,32 +30,16 @@ export class NewTrainingComponent implements OnInit {
     this.addExerciseMode = true;
   }
 
-  public changeSuperSeriaMode(): void {
-    this.superSeriaMode = !this.superSeriaMode;
-  }  
-
   public onSubmit(): void {
-    console.log(this.profileForm.value);
     this.addNewTraining.next({ 'name': this.profileForm.controls.name.value, 'description': this.profileForm.controls.description.value, 'excercises': this.exercises });
   }
 
   public confirmExercise(): void {
-    if (this.superSeriaMode) {
-      this.exercises.push(this.exercisesList.filter(x => (x.selected)).map(x => { return {'description': x.description, 'img': x.img} }));
-    } else {
-      this.exercises = this.tempExcercises;
-    }
+    this.exercises.push(this.exercisesList.filter(x => (x.selected)).map(x => { return {'description': x.description, 'img': x.img, 'series': [{ 'number': 1, 'repeats': 12}, { 'number': 2, 'repeats': 8}]} }));
     this.addExerciseMode = false;
   }
 
-  public selectOneExercise(ex: any) {
-    if(!this.superSeriaMode) {
-      if (this.tempExcercises.length > 0 && this.tempExcercises[0].img === ex.img) {
-        this.tempExcercises.length = 0;
-      } else {
-        this.tempExcercises.length = 0;
-        this.tempExcercises.push([ex]);
-      }
-    }
+  public removeExercise(exercise: any) {
+    this.exercises = this.exercises.filter(x => x != exercise);
   }
 }
